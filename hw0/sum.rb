@@ -15,7 +15,7 @@ def max_2_sum(arr)
   arr.sort.reverse[0..1].reduce(:+)
 end
 
-# Define a method sum_to_n? which takes an array of integers and an 
+# Define a method sum_to_n? which takes an array of integers and an
 # additional integer, n, as arguments and return true if any two distinct
 # elements in the array sum to n. An empty array or single element array
 # should both return false.
