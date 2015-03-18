@@ -1,7 +1,7 @@
 # Define a method hello(name) that takes a string representing
 # a name and return the string "Hello, " concatenated with the name
 def hello(name)
-  "Hello, " + name
+  "Hello, #{name}"
 end
 
 # Define a method that takes a string and return true if it
