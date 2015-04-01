@@ -2,13 +2,12 @@ class HangpersonGame
   # add the necessary class methods, attributes, etc. here
   # to make the tests in spec/hangperson_game_spec.rb pass.
   #
-  attr_accessor :guesses, :letters_remaining, :valid, :word, :wrong_guesses
+  attr_accessor :guesses, :valid, :word, :wrong_guesses
 
   def initialize(word)
     @word = word
     @guesses = ''
     @wrong_guesses = ''
-    @letters_remaining = ('a'..'z').to_a # all the letters not guessed.
   end
 
   # Get a word from remote "random word" service
@@ -32,8 +31,6 @@ class HangpersonGame
     # if user has already guessed letter, no need to check and duplicate value
     return false if already_guessed?(letter)
 
-    remove_letter_guessed(letter)
-
     # check if the guess is correct or incorrect
     check_guess(letter) if valid
   end
@@ -54,10 +51,10 @@ class HangpersonGame
     result = ''
 
     word.split('').each do |letter|
-      if letters_remaining.include?(letter)
-        result << '-'
-      else
+      if guesses.include?(letter)
         result << letter
+      else
+        result << '-'
       end
     end
 
@@ -82,10 +79,6 @@ class HangpersonGame
 
   def number_of_wrong_guesses
     wrong_guesses.length
-  end
-
-  def remove_letter_guessed(letter)
-    letters_remaining.delete(letter)
   end
 
   def valid_guess(letter)
