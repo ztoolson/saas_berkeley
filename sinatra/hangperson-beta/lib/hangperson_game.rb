@@ -1,11 +1,11 @@
 class HangpersonGame
   # add the necessary class methods, attributes, etc. here
   # to make the tests in spec/hangperson_game_spec.rb pass.
-  #
-  attr_accessor :guesses, :valid, :word, :wrong_guesses
+  
+  attr_accessor :guesses, :wrong_guesses
 
   ##
-  # Constructir
+  # Constructor
   #
   def initialize(word)
     @word = word
@@ -73,6 +73,8 @@ class HangpersonGame
   end
 
   private
+
+  attr_accessor :valid, :word
 
   # check if a letter has already been guessed
   def already_guessed?(letter)
