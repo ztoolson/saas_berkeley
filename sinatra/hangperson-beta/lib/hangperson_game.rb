@@ -4,24 +4,34 @@ class HangpersonGame
   #
   attr_accessor :guesses, :valid, :word, :wrong_guesses
 
+  ##
+  # Constructir
+  #
   def initialize(word)
     @word = word
     @guesses = ''
     @wrong_guesses = ''
   end
 
+  ##
+  # Class Methods
+  #
+
   # Get a word from remote "random word" service
   def self.get_random_word
     require 'uri'
     require 'net/http'
     uri = URI('http://watchout4snakes.com/wo4snakes/Random/RandomWord')
-    Net::HTTP.post_form(uri ,{}).body
+    Net::HTTP.post_form(uri, {}).body
   end
 
+  ##
+  # Instance Methods
+  #
 
   # validate the guess and then evaluate the letter guessed.
   def guess(letter)
-    if valid_guess(letter)
+    if valid_guess?(letter)
       valid = true
     else
       valid = false
@@ -40,6 +50,7 @@ class HangpersonGame
     letters.each { |letter| guess(letter) }
   end
 
+  # return :lose, :win, :play based on the state of the word and number of guesses.
   def check_win_or_lose
     return :lose if number_of_wrong_guesses >= 7
     return :win unless word_with_guesses.include?('-')
@@ -68,7 +79,7 @@ class HangpersonGame
     (guesses + wrong_guesses).include?(letter)
   end
 
-  # Check the guess if it is in the word and add to appropriate list
+  # check if the guess is correct or incorrect and append to the appropriate list.
   def check_guess(letter)
     if word.include?(letter)
       guesses << letter
@@ -81,7 +92,7 @@ class HangpersonGame
     wrong_guesses.length
   end
 
-  def valid_guess(letter)
+  def valid_guess?(letter)
     letter =~ /^[a-z]$/i
   end
 end
