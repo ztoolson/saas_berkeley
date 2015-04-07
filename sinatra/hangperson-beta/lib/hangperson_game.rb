@@ -1,8 +1,8 @@
 class HangpersonGame
   # add the necessary class methods, attributes, etc. here
   # to make the tests in spec/hangperson_game_spec.rb pass.
-  
-  attr_accessor :guesses, :wrong_guesses
+
+  attr_accessor :guesses, :wrong_guesses, :word, :valid
 
   ##
   # Constructor
@@ -23,6 +23,8 @@ class HangpersonGame
     require 'net/http'
     uri = URI('http://watchout4snakes.com/wo4snakes/Random/RandomWord')
     Net::HTTP.post_form(uri, {}).body
+  rescue
+    raise 'Could not get random word.'
   end
 
   ##
@@ -43,6 +45,9 @@ class HangpersonGame
 
     # check if the guess is correct or incorrect
     check_guess(letter) if valid
+
+    # return true if guess is valid
+    true
   end
 
   # guess all the letters in the string
@@ -73,8 +78,6 @@ class HangpersonGame
   end
 
   private
-
-  attr_accessor :valid, :word
 
   # check if a letter has already been guessed
   def already_guessed?(letter)
