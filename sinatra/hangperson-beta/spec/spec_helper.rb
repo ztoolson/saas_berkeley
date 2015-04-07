@@ -1,5 +1,5 @@
-#require 'simplecov'
-#SimpleCov.start
+# require 'simplecov'
+# SimpleCov.start
 
 require File.join(File.dirname(__FILE__), '..', 'app.rb')
 
@@ -26,7 +26,7 @@ end
 # The following lines disable web usage and causes the external API to be stubbed out,
 # eliminating randomness to aid in testing
 def stub_random_word(word)
-  stub_request(:post, 'http://watchout4snakes.com/wo4snakes/Random/RandomWord').to_return(:body => word)
+  stub_request(:post, 'http://watchout4snakes.com/wo4snakes/Random/RandomWord').to_return(body: word)
 end
 
 WebMock.disable_net_connect!(allow_localhost: true)
@@ -34,7 +34,7 @@ WebMock.disable_net_connect!(allow_localhost: true)
 RSpec.configure do |config|
   config.include Rack::Test::Methods
   config.before(:each) do
-    stub_request(:post, "http://watchout4snakes.com/wo4snakes/Random/RandomWord").to_return(:body => "foobar")
+    stub_request(:post, 'http://watchout4snakes.com/wo4snakes/Random/RandomWord').to_return(body: 'foobar')
   end
   config.color = true
 end
