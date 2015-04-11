@@ -1,5 +1,4 @@
 require 'rock_paper_scissors'
-require 'debugger'
 
 describe RockPaperScissors, :pending => true do
   before(:each) do

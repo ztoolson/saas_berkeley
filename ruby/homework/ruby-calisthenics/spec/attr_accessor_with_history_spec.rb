@@ -1,5 +1,4 @@
 require 'attr_accessor_with_history'
-require 'debugger'
 
 class TestClass1
   attr_accessor_with_history :foo

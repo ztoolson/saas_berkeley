@@ -1,5 +1,4 @@
 require 'dessert'
-require 'debugger'
 
 describe Dessert, :pending => true do
   describe 'cake' do

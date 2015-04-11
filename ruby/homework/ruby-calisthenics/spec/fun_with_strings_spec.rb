@@ -1,5 +1,4 @@
 require 'fun_with_strings'
-require 'debugger'
 
 describe 'palindrome detection', :pending => true do
   it 'should work for simple strings [10 points]' do
